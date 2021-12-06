@@ -6,7 +6,7 @@ with payments as (
         status,
 
         -- Amount is stored in cents, convert to dollars
-        amount / 100 as amount,
+        round(1.0 * amount / 100, 4) as amount,
         created as created_at
 
     from raw.stripe.payment
