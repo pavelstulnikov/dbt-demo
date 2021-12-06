@@ -1,13 +1,12 @@
-{{ config(
-    materialized="table"
-)}}
 
-with customers as (
-    select * from {{ ref('stg_customers')}}
+
+      create or replace transient table analytics.dbt_pstulnikov.dim_customers  as
+      (with customers as (
+    select * from analytics.dbt_pstulnikov.stg_customers
 ),
 
 orders as (
-    select * from {{ ref('stg_orders')}}
+    select * from analytics.dbt_pstulnikov.stg_orders
 ),
 
 customer_orders as (
@@ -43,3 +42,5 @@ final as (
 )
 
 select * from final
+      );
+    
