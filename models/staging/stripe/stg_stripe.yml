@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: Each row represents a unique payment
+    columns:
+      - name: payment_id
+        description: Primary key for stg_payments
+      - name: order_id
+        description: Foreign key referring to orders in stg_orders
+      - name: payment_method
+        description: "{{ doc('payment_method')}}"
+      - name: status
+        description: Whether the payment has been successful or failed
+      - name: amount
+        description: Amount attempted to be paid. Does not necessarily represent the actual amount paid as the payment may have failed.
+      - name: created_at
+        description: Date at which the payment was attempted
